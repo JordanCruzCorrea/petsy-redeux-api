@@ -1,7 +1,7 @@
 Item.destroy_all
 User.destroy_all
 
-admin = User.create!(username: 'admin', email: 'jccdev45@gmail.com', password: 'changemepls')
+admin = User.create!(username: 'admin', email: 'jccdev45@gmail.com', password: 'changemepls', picture: Faker::LoremFlickr.image(size: "300x300", search_terms: ['person']))
 
 puts "#{User.count} users created"
 
