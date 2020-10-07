@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: :create
+  # before_action :set_user, only: [:show, :update, :destroy]
+  # before_action :authorize_request, except: :create
+
+  def user_items
+    @user = User.find(params[:id])
+
+    render json: @user, include: :items, status: :ok
+  end
 
   # GET /users
   def index
@@ -11,6 +17,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user = User.find(params[:id])
+    
     render json: @user
   end
 
@@ -54,6 +62,6 @@ class UsersController < ApplicationController
     # Bcrypt will take a password and create a password_digest
     # UsersController needs to permit a :password instead of a :password_digest
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :picture)
     end
 end
