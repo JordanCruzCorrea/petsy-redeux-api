@@ -16,6 +16,12 @@ class ItemsController < ApplicationController
     render json: @item
   end
 
+  def categories
+    @item = Item.where(category: params[:category])
+
+    render json: @item
+  end
+
   # POST /items
   def create
     @item = Item.new(item_params)
